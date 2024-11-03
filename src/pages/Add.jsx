@@ -7,8 +7,8 @@ import AuthService from "../services/Store.services"; // Adjust according to you
 // const GEO_KEY = import.meta.env.VITE_GEOAPIMAP_KEY;
 
 const Add = () => {
-  const { currentUser } = useAuthContext(); // Get current user from AuthContext
-  const navigate = useNavigate();
+  // const { currentUser } = useAuthContext(); // Get current user from AuthContext
+
 
   const [store, setStore] = useState({
     userId: "", // Assuming you have userId to associate with the store
@@ -19,29 +19,10 @@ const Add = () => {
     radius: "",
   });
 
-  // Check if user is logged in
-  useEffect(() => {
-    if (!currentUser) {
-      Swal.fire({
-        title: 'Unauthorized',
-        text: 'Please log in to add a store.',
-        icon: 'warning',
-        confirmButtonText: 'OK',
-      }).then(() => {
-        navigate("/login");
-      });
-    } else {
-      setStore((prev) => ({ ...prev, userId: currentUser.id })); // Set userId from currentUser if available
-    }
-  }, [currentUser, navigate]);
+  const navigate = useNavigate();
 
-  // Handle input changes
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setStore((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setStore({ ...store, [e.target.name]: e.target.value });
   };
 
   // Handle form submission
@@ -49,13 +30,16 @@ const Add = () => {
     e.preventDefault(); // Prevent page refresh
     try {
       const response = await AuthService.createStore(store); // Use your API service for store creation
+      console.log("API response:", response); // ตรวจสอบข้อมูลที่ตอบกลับ
+      console.log("Status:", response.status); // ตรวจสอบสถานะการตอบกลับ
+
       if (response.status === 200 || response.status === 201) {
         Swal.fire({
           title: "Store Added",
           text: "Your store has been added successfully!",
           icon: "success",
         });
-        navigate("/Home"); // Navigate to the home page
+        navigate("/home"); // Navigate to the home page
       }
     } catch (error) {
       console.log("Error:", error); // Check for errors
@@ -84,6 +68,50 @@ const Add = () => {
       Swal.fire("Error", "Geolocation is not supported by this browser.", "error");
     }
   };
+
+  // Check if user is logged in
+  // useEffect(() => {
+  //   if (!currentUser) {
+  //     Swal.fire({
+  //       title: 'Unauthorized',
+  //       text: 'Please log in to add a store.',
+  //       icon: 'warning',
+  //       confirmButtonText: 'OK',
+  //     }).then(() => {
+  //       navigate("/login");
+  //     });
+  //   } else {
+  //     setStore((prev) => ({ ...prev, userId: currentUser.id })); // Set userId from currentUser if available
+  //   }
+  // }, [currentUser, navigate]);
+
+  // Handle input changes
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setStore((prev) => ({
+  //     ...prev,
+  //     [name]: value,
+  //   }));
+  // };
+
+
+  // const handleGetCurrentLocation = () => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       setStore((prevStore) => ({
+  //         ...prevStore,
+  //         lat: position.coords.latitude,
+  //         lng: position.coords.longitude,
+  //       }));
+  //       Swal.fire("Success", "Current location retrieved!", "success");
+  //     }, (error) => {
+  //       console.error("Error getting location:", error);
+  //       Swal.fire("Error", "Could not get current location.", "error");
+  //     });
+  //   } else {
+  //     Swal.fire("Error", "Geolocation is not supported by this browser.", "error");
+  //   }
+  // };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-[#E8F7E9] to-[#C2EBC3]">
@@ -148,7 +176,7 @@ const Add = () => {
               type="number"
               className="block w-full mt-1 px-4 py-2 border border-gray-300 rounded-md bg-[#F0FAF2] focus:outline-none focus:ring-2 focus:ring-[#86D293]"
               placeholder="Enter delivery radius"
-              name="deliveryRadius"
+              name="radius"
               value={store.deliveryRadius}
               onChange={handleChange}
               required
@@ -165,7 +193,7 @@ const Add = () => {
             <button
               type="button"
               className="btn bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
-              onClick={() => navigate("/Home")}
+              onClick={() => navigate("/home")}
             >
               Cancel
             </button>

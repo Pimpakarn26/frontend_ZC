@@ -17,7 +17,7 @@ const Register = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!user.username) newErrors.username = "username is required"; 
+    if (!user.username) newErrors.username = "Username is required"; 
     if (!user.email) newErrors.email = "Email is required";
     else if (!/\S+@\S+\.\S+/.test(user.email))
       newErrors.email = "Email is invalid";
@@ -73,15 +73,15 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen" style={{ backgroundColor: "#F7F7F8" }}>
-      <div className="w-full max-w-md p-8 space-y-8 rounded-lg shadow-2xl" style={{ backgroundColor: "#008163" }}>
-        <h2 className="text-3xl font-bold text-center" style={{ color: "#E9EFEC" }}>
+    <div className="flex items-center justify-center min-h-screen bg-base-200">
+      <div className="w-full max-w-md p-8 space-y-8 bg-base-300 rounded-lg shadow-2xl">
+        <h2 className="text-3xl font-bold text-center text-primary">
           Create Account
         </h2>
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="username" className="block text-sm font-medium" style={{ color: "#E9EFEC" }}>
-            username
+            <label htmlFor="username" className="label">
+              <span className="label-text">Username</span>
             </label>
             <input
               type="text"
@@ -89,14 +89,13 @@ const Register = () => {
               name="username"
               value={user.username}
               onChange={handleChange}
-              className="block w-full px-4 py-2 mt-1 border rounded-md shadow-sm"
-              style={{ borderColor: "#E9EFEC", backgroundColor: "#E9EFEC", color: "#5F6F65" }}
+              className="input input-bordered w-full"
             />
-            {errors.userName && <p className="mt-2 text-sm" style={{ color: "#FF0000" }}>{errors.userName}</p>}
+            {errors.username && <p className="mt-2 text-sm text-error">{errors.username}</p>}
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium" style={{ color: "#E9EFEC" }}>
-              Email
+            <label htmlFor="email" className="label">
+              <span className="label-text">Email</span>
             </label>
             <input
               type="email"
@@ -104,15 +103,14 @@ const Register = () => {
               name="email"
               value={user.email}
               onChange={handleChange}
-              className="block w-full px-4 py-2 mt-1 border rounded-md shadow-sm"
-              style={{ borderColor: "#E9EFEC", backgroundColor: "#E9EFEC", color: "#5F6F65" }}
+              className="input input-bordered w-full"
               placeholder="Enter your email"
             />
-            {errors.email && <p className="mt-2 text-sm" style={{ color: "#FF0000" }}>{errors.email}</p>}
+            {errors.email && <p className="mt-2 text-sm text-error">{errors.email}</p>}
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium" style={{ color: "#E9EFEC" }}>
-              Password
+            <label htmlFor="password" className="label">
+              <span className="label-text">Password</span>
             </label>
             <input
               type="password"
@@ -120,15 +118,14 @@ const Register = () => {
               name="password"
               value={user.password}
               onChange={handleChange}
-              className="block w-full px-4 py-2 mt-1 border rounded-md shadow-sm"
-              style={{ borderColor: "#E9EFEC", backgroundColor: "#E9EFEC", color: "#5F6F65" }}
+              className="input input-bordered w-full"
               placeholder="Enter your password"
             />
-            {errors.password && <p className="mt-2 text-sm" style={{ color: "#FF0000" }}>{errors.password}</p>}
+            {errors.password && <p className="mt-2 text-sm text-error">{errors.password}</p>}
           </div>
           <div>
-            <label htmlFor="address" className="block text-sm font-medium" style={{ color: "#E9EFEC" }}>
-              Address
+            <label htmlFor="address" className="label">
+              <span className="label-text">Address</span>
             </label>
             <input
               type="text"
@@ -136,17 +133,15 @@ const Register = () => {
               name="address"
               value={user.address}
               onChange={handleChange}
-              className="block w-full px-4 py-2 mt-1 border rounded-md shadow-sm"
-              style={{ borderColor: "#E9EFEC", backgroundColor: "#E9EFEC", color: "#5F6F65" }}
+              className="input input-bordered w-full"
               placeholder="Enter your address"
             />
-            {errors.address && <p className="mt-2 text-sm" style={{ color: "#FF0000" }}>{errors.address}</p>}
+            {errors.address && <p className="mt-2 text-sm text-error">{errors.address}</p>}
           </div>
           <div>
             <button
               type="submit"
-              className="flex justify-center w-full px-4 py-2 text-sm font-medium rounded-md"
-              style={{ backgroundColor: "#EE2526", color: "#E9EFEC" }}
+              className="btn btn-primary w-full"
               disabled={loading}
             >
               {loading ? "Registering..." : "Register"}
@@ -156,8 +151,7 @@ const Register = () => {
             <button
               type="button"
               onClick={handleCancel}
-              className="flex justify-center w-full px-4 py-2 text-sm font-medium rounded-md"
-              style={{ backgroundColor: "#EE2526", color: "#E9EFEC" }}
+              className="btn btn-secondary w-full"
             >
               Cancel
             </button>

@@ -1,22 +1,22 @@
 import React from 'react';
 import Map from '../components/Map';
 // import Navbar from '../components/Navbar';
-import { Outlet } from "react-router-dom";
-import StoreService from "../services/Store.services";
-import { useEffect, useState } from "react";
+// import { Outlet } from "react-router-dom";
+// import StoreService from "../services/Store.services";
+// import { useEffect, useState } from "react";
 
 const Home = () => {
-    const [store, setStore] = useState({});
-    useEffect(() => {
-      const FetchStore = async () => {
-        const respone = await StoreService.getAllStores();
-        console.log(respone.data);
+    // const [store, setStore] = useState({});
+    // useEffect(() => {
+    //   const FetchStore = async () => {
+    //     const respone = await StoreService.getAllStores();
+    //     // console.log(respone.data);
   
-        setStore(respone);
-      };
+    //     setStore(respone);
+    //   };
   
-      FetchStore();
-    }, []);
+    //   FetchStore();
+    // }, []);
   
     return (
         <div>
@@ -24,9 +24,9 @@ const Home = () => {
             {/* <Navbar /> */}
             <div className="mt-24"></div>
             <Map />
-            <main>
+            {/* <main>
                 <Outlet />
-            </main>
+            </main> */}
         </div>
     );
 };

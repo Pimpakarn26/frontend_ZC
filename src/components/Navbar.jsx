@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import RegisterButton from "./RegisterButton";
 import LoginButton from "./LoginButton";
-import UserProfile from "./UserProfile";
+import UserProfile from "../pages/UserProfile";
 import { useAuthContext } from "../contexts/AuthContext";
 
 
@@ -54,6 +54,11 @@ const Navbar = () => {
             <li>
               <a href="/add" className="hover:bg-[#0097A7]">
                 Add Store
+              </a>
+            </li>
+            <li>
+              <a href="/edit" className="hover:bg-[#0097A7]">
+                Edit Store
               </a>
             </li>
           </ul>

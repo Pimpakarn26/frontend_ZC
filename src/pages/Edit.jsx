@@ -75,7 +75,7 @@ const Edit = () => {
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => {
-        navigate("/Home");
+        navigate("/home");
       });
     } catch (error) {
       console.error("Error updating store:", error);
@@ -96,13 +96,13 @@ const Edit = () => {
       text: "You will not be able to recover your changes!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#7085d6",
+      cancelButtonColor: "#d35",
       confirmButtonText: "Yes, go back!",
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        navigate("/Home");
+        navigate("/home");
       }
     });
   };

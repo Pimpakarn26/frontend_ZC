@@ -6,8 +6,9 @@ import Login from "../pages/Login";
 import Home from "../pages/Home";
 import Add from "../pages/Add";
 import Edit from "../pages/Edit";
+import Layout from "../components/Layout";
 import Register from '../pages/Register';
-import UserProfile from "../components/UserProfile";
+import UserProfile from "../pages/UserProfile";
 import AdminPage from "../pages/AdminPage";
 import NotAllowed from "../pages/NotAllowed";
 import UsePage from "../pages/UserPage";
@@ -15,6 +16,8 @@ import LandingPage from "../pages/LandingPage";
 
 const router = createBrowserRouter([
   {
+    path: "/",
+    element: <Layout />,
     children: [
       {
         path: "",
