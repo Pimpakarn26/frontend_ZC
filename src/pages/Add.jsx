@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext"; // Import AuthContext
 import Swal from "sweetalert2";
 import AuthService from "../services/Store.services"; // Adjust according to your API service
-import axios from "axios"; // Import axios
-const GEO_KEY = import.meta.env.VITE_GEOAPIMAP_KEY;
+// import axios from "axios"; // Import axios
+// const GEO_KEY = import.meta.env.VITE_GEOAPIMAP_KEY;
 
 const Add = () => {
   const { currentUser } = useAuthContext(); // Get current user from AuthContext

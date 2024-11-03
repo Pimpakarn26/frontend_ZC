@@ -7,6 +7,9 @@ import LocationMap from "./LocationMap";
 import StoreService from "../services/Store.services";
 import { useNavigate } from "react-router-dom";
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const STORE_API = import.meta.env.VITE_Store_API;
+
 // Define custom icons
 const storeIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/256/1198/1198297.png",
@@ -147,11 +150,12 @@ function Map ({ storeData }) {
 
   return (
     <>
-      <div className="button-container">
-        <button className="get-location-btn" onClick={handlerGetLocation}>
+      <div className="flex space-x-4 justify-center my-6">
+        <button className="btn btn-outline btn-accent" onClick={handlerGetLocation}>
           Get My Location
         </button>
-        <button className="get-location-btn" onClick={handleLocationCheck}>
+        
+        <button  className="btn btn-outline btn-secondary" onClick={handleLocationCheck}>
           Check Delivery Availability
         </button>
       </div>

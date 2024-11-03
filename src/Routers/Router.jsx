@@ -11,11 +11,17 @@ import UserProfile from "../components/UserProfile";
 import AdminPage from "../pages/AdminPage";
 import NotAllowed from "../pages/NotAllowed";
 import UsePage from "../pages/UserPage";
-
+import LandingPage from "../pages/LandingPage";
 
 const router = createBrowserRouter([
+  {
+    children: [
+      {
+        path: "",
+        element: <LandingPage />,
+      },
     {
-      path: "/",
+      path: "/home",
       element: (
         <UsePage>
           <Home />
@@ -63,9 +69,11 @@ const router = createBrowserRouter([
         element: <UserProfile />,
       },
      
-  ]);
+    ]
+    }
+]);
   
-  export default router;
+export default router;
   
 
 // const router = createBrowserRouter([

@@ -1,27 +1,27 @@
 import React from 'react';
 import Map from '../components/Map';
-import Navbar from '../components/Navbar';
+// import Navbar from '../components/Navbar';
 import { Outlet } from "react-router-dom";
 import StoreService from "../services/Store.services";
 import { useEffect, useState } from "react";
 
 const Home = () => {
-    const [stores, setStores] = useState({});
+    const [store, setStore] = useState({});
     useEffect(() => {
-      const FetchStores = async () => {
+      const FetchStore = async () => {
         const respone = await StoreService.getAllStores();
         console.log(respone.data);
   
-        setStores(respone);
+        setStore(respone);
       };
   
-      FetchStores();
+      FetchStore();
     }, []);
   
     return (
         <div>
 
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="mt-24"></div>
             <Map />
             <main>

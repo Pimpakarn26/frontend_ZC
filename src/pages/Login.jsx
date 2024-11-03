@@ -35,7 +35,7 @@ const Login = () => {
           timer: 2000,
           showConfirmButton: false,
         }).then(() => {
-          navigate("/"); // เปลี่ยนเส้นทางไปที่หน้า Home
+          navigate("/home"); // เปลี่ยนเส้นทางไปที่หน้า Home
         });
         setUser({
           userName: "",

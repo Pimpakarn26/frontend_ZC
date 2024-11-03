@@ -1,68 +1,45 @@
 import React from "react";
 import { useAuthContext } from "../contexts/AuthContext";
-import { useNavigate, Link } from "react-router-dom";
+// import { useNavigate, Link } from "react-router-dom";
 
 //Import รูปเข้ามา
 
 
 const UserProfile = () => {
-  const { logout } = useAuthContext(); // ดึงฟังก์ชัน logout จาก context
-  const navigate = useNavigate(); // ใช้ navigate เพื่อเปลี่ยนเส้นทาง
-
-  const handleLogout = () => {
-    logout(); // เรียกใช้ฟังก์ชัน logout
-    navigate("/login"); // ใช้ navigate เพื่อเปลี่ยนเส้นทางไปที่หน้า Login
-  };
+  const { user } = useAuthContext();
 
   return (
-    <div className="relative">
-      <div className="dropdown dropdown-end">
-        <div
-          tabIndex={0}
-          role="button"
-          className="btn btn-ghost btn-circle avatar border border-gray-300 rounded-full p-1 relative"
-        >
-          <div className="w-10 h-10 rounded-full overflow-hidden">
+    <div className="flex justify-center items-center h-screen bg-[#F2F9FF]">
+      <div className="card bg-white shadow-xl rounded-lg w-96 p-4">
+        <div className="flex items-center">
+          <div className="relative mr-4">
             <img
-              alt="User Avatar"
-              src="https://cdn-icons-png.flaticon.com/256/17588/17588305.png"
+              className="w-16 h-16 rounded-full border-2 border-gray-300"
+              src="https://cdn-icons-png.flaticon.com/512/8323/8323209.png"
+              alt="User Profile"
             />
+            {/* Green Dot */}
+            <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
           </div>
-          {/* Green Dot */}
-          <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+          <div>
+            <h2 className="text-2xl font-semibold mb-2">User Profile</h2>
+            <p className="text-gray-800">
+              <strong>Username:</strong> {user.username}
+            </p>
+            <p className="text-gray-800">
+              <strong>Email:</strong> {user.email}
+            </p>
+            <p className="text-gray-800">
+              <strong>Address:</strong> {user.address}
+            </p>
+            <p className="text-gray-800">
+              <strong>Roles:</strong> {user.roles.join(", ")}
+            </p>
+          </div>
         </div>
-        <ul
-          tabIndex={0}
-          className="menu menu-sm dropdown-content bg-white border border-gray-200 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg"
-        >
-          <li>
-            <Link
-              to="/userprofile"
-              className="flex items-center justify-between text-[#007BFF] hover:bg-[#F0F4FF] px-4 py-2 rounded-md"
-            >
-              Profile
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/1946/1946083.png"
-                alt="Profiles Icon"
-                className="w-5 h-5"
-              />
-            </Link>
-          </li>
-
-          <li>
-            <a
-              className="text-[#FF4D4D] hover:bg-[#FFECEC] px-4 py-2 rounded-md"
-              onClick={handleLogout}
-            >
-              Logout
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/1574/1574351.png"
-                alt="Logout Icon"
-                className="w-5 h-5"
-              />
-            </a>
-          </li>
-        </ul>
+        <div className="card-actions justify-end mt-4">
+          <button className="btn btn-primary">Edit Profile</button>
+        </div>
       </div>
     </div>
   );
